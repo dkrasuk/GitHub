@@ -1,0 +1,151 @@
+﻿@using System.Web.UI.WebControls
+@model WebApplication1.Models.ApplicationViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Создать заявку на DS
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Заявка на DS</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    Клиент
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="container">
+                                    <div class="row">
+                                        @Html.DisplayNameFor(n => n.Client.FIO)
+                                        @Html.TextBoxFor(n => n.Client.FIO)
+                                    </div>
+                                    <div class="row">
+                                        @Html.DisplayNameFor(n => n.Client.INN)
+                                        @Html.TextBoxFor(n => n.Client.INN)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                    Адресс
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="container">
+                                    <div class="row">
+                                        @Html.DisplayNameFor(n => n.Address.RegistrationAddress)
+                                        @Html.TextBoxFor(n => n.Address.RegistrationAddress)
+                                    </div>
+                                    <div class="row">
+                                        @Html.DisplayNameFor(n => n.Address.ResidentAddress)
+                                        @Html.TextBoxFor(n => n.Address.ResidentAddress)
+                                    </div>
+                                    <div class="row">
+                                        @Html.DisplayNameFor(n => n.Address.IsEquals)
+                                        @Html.CheckBoxFor(n => n.Address.IsEquals)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collateral">
+                                    Залоги
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collateral" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="container">
+                                    <div class="row">
+                                        @foreach (var collateral in Model.Collaterals)
+                                        {
+                                        <div class="container">
+                                            <div class="row hidden" id="CollateralID">
+                                                @Html.DisplayNameFor(item => collateral.ID)
+                                                @Html.DisplayFor(item => collateral.ID)
+                                            </div>
+                                            <div class="row">
+                                                @Html.DisplayNameFor(item => collateral.Type)
+                                                @Html.DisplayFor(item => collateral.Type)
+                                            </div>
+
+                                            <div class="row">
+                                                @Html.DisplayNameFor(item => collateral.Description)
+                                                @Html.DisplayFor(item => collateral.Description)
+                                            </div>
+                                            <div class="row">
+                                                @Html.DisplayNameFor(item => collateral.Evaluation)
+                                                @Html.DisplayFor(item => collateral.Evaluation)
+                                            </div>
+                                        </div>
+                                            <hr /><br />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#comment">
+                                    Комментарий
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="comment" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="container">
+                                    <div class="row">
+                                        @Html.DisplayNameFor(n => n.Comment)
+                                        @Html.TextAreaFor(n => n.Comment)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary">Сохранить изменения</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
