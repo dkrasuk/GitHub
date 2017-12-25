@@ -7,13 +7,14 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+    [RoutePrefix("Index")]
     public class IndexController : Controller
     {
         // GET: Index
         public ActionResult Index()
         {
             ApplicationViewModel model = new ApplicationViewModel();
-            model.Client = new Client() { FIO = "Красюк Дмитрий Витальевич", INN = "125455674455" };
+            model.Client = new Client() { FIO = "Красюк Дмитрий Витальевич", INN = "125455674455", AgreementId = new List<int>{11555, 11111, 258774, 8545212}};
             model.Address = new Address()
             {
                 RegistrationAddress = "Киев, ул.Степана Бандеры 10",
@@ -29,6 +30,8 @@ namespace WebApplication1.Controllers
                 new Collateral() { Evaluation = "45555", Description = "Земельный участок", Type = "MORTAGE",ID = Guid.NewGuid()},
                 new Collateral() { Evaluation = "45555", Description = "Земельный участок", Type = "OTHER",ID = Guid.NewGuid()}
             };
+
+           
 
             return View("Index", model);
         }
@@ -48,18 +51,11 @@ namespace WebApplication1.Controllers
 
         // POST: Index/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [Route("Create")]
+        public HttpResponse Create(ApplicationViewModel model)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var postRequest = model;
+            return null;
         }
 
         // GET: Index/Edit/5

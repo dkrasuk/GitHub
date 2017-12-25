@@ -13,5 +13,8 @@ namespace WebApplication1.Models
 
         [Display(Name = "ИНН")]
         public string INN { get; set; }
+
+        [Display(Name = "Номер договора")]
+        public List<int> AgreementId { get; set; }
     }
 }
